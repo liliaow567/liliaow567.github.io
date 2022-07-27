@@ -3,9 +3,25 @@
         <title>备忘录</title>
         <link>https://liliaow567.github.io/</link>
         <description>记录，用来和时间对抗</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 26 Jul 2022 23:53:15 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 27 Jul 2022 11:38:05 &#43;0800</lastBuildDate>
             <atom:link href="https://liliaow567.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>解除UWP应用的网络隔离</title>
+    <link>https://liliaow567.github.io/2022/07/%E8%A7%A3%E9%99%A4uwp%E5%BA%94%E7%94%A8%E7%9A%84%E7%BD%91%E7%BB%9C%E9%9A%94%E7%A6%BB/</link>
+    <pubDate>Wed, 27 Jul 2022 11:38:05 &#43;0800</pubDate>
+    <author>liao</author>
+    <guid>https://liliaow567.github.io/2022/07/%E8%A7%A3%E9%99%A4uwp%E5%BA%94%E7%94%A8%E7%9A%84%E7%BD%91%E7%BB%9C%E9%9A%94%E7%A6%BB/</guid>
+    <description><![CDATA[使用命令行工具解除UWP应用的网络隔离]]></description>
+</item>
+<item>
+    <title>Git命令</title>
+    <link>https://liliaow567.github.io/2022/07/git%E5%91%BD%E4%BB%A4/</link>
+    <pubDate>Wed, 27 Jul 2022 11:03:48 &#43;0800</pubDate>
+    <author>liao</author>
+    <guid>https://liliaow567.github.io/2022/07/git%E5%91%BD%E4%BB%A4/</guid>
+    <description><![CDATA[记录Git命令的常用操作]]></description>
+</item>
+<item>
     <title>工具收集</title>
     <link>https://liliaow567.github.io/2022/07/%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/</link>
     <pubDate>Tue, 26 Jul 2022 23:53:15 &#43;0800</pubDate>
