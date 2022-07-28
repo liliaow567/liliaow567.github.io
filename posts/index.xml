@@ -35,5 +35,53 @@
     <guid>https://liliaow567.github.io/2022/07/spaceclaim%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%E4%BC%A0%E5%85%A5/</guid>
     <description><![CDATA[记录spaceclaim命令行如何传入参数，以及脚本中如何获取参数]]></description>
 </item>
+<item>
+    <title>GSL 系列 6 — 线性代数 5 — 完全正交分解</title>
+    <link>https://liliaow567.github.io/2020/05/gsl%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B05/</link>
+    <pubDate>Sat, 09 May 2020 04:12:52 &#43;0800</pubDate>
+    <author>liao</author>
+    <guid>https://liliaow567.github.io/2020/05/gsl%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B05/</guid>
+    <description><![CDATA[矩阵完全正交分解，和 GSL 完全正交分解]]></description>
+</item>
+<item>
+    <title>GSL 系列 6 — 线性代数 4 — LQ 分解</title>
+    <link>https://liliaow567.github.io/2020/05/gsl%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B04/</link>
+    <pubDate>Sat, 09 May 2020 04:12:40 &#43;0800</pubDate>
+    <author>liao</author>
+    <guid>https://liliaow567.github.io/2020/05/gsl%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B04/</guid>
+    <description><![CDATA[GSL LQ 分解]]></description>
+</item>
+<item>
+    <title>GSL 系列 6 — 线性代数 3 — QR 分解</title>
+    <link>https://liliaow567.github.io/2020/05/gsl%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B03/</link>
+    <pubDate>Sat, 09 May 2020 04:12:31 &#43;0800</pubDate>
+    <author>liao</author>
+    <guid>https://liliaow567.github.io/2020/05/gsl%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B03/</guid>
+    <description><![CDATA[GSL QR 分解]]></description>
+</item>
+<item>
+    <title>GSL 系列 6 — 线性代数 2 — LU 分解</title>
+    <link>https://liliaow567.github.io/2020/05/gsl%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B02/</link>
+    <pubDate>Sat, 09 May 2020 04:12:13 &#43;0800</pubDate>
+    <author>liao</author>
+    <guid>https://liliaow567.github.io/2020/05/gsl%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B02/</guid>
+    <description><![CDATA[GSL LU 分解]]></description>
+</item>
+<item>
+    <title>GSL 系列 6 — 线性代数 1 — 背景知识 1</title>
+    <link>https://liliaow567.github.io/2020/05/gsl%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B01/</link>
+    <pubDate>Sat, 09 May 2020 04:12:02 &#43;0800</pubDate>
+    <author>liao</author>
+    <guid>https://liliaow567.github.io/2020/05/gsl%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B01/</guid>
+    <description><![CDATA[线性代数矩阵分解基本知识，LU 分解，QR 分解，LQ 分解]]></description>
+</item>
+<item>
+    <title>GSL 系列 5 — 向量和矩阵 4 — 基本线性代数运算 (BLAS)</title>
+    <link>https://liliaow567.github.io/2020/05/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B54/</link>
+    <pubDate>Sat, 09 May 2020 03:28:07 &#43;0800</pubDate>
+    <author>liao</author>
+    <guid>https://liliaow567.github.io/2020/05/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B54/</guid>
+    <description><![CDATA[GSL 线性代数基本运算 (BLAS) 模块]]></description>
+</item>
 </channel>
 </rss>

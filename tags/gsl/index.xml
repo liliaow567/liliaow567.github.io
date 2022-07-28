@@ -1,43 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>备忘录</title>
-        <link>https://liliaow567.github.io/</link>
-        <description>记录，用来和时间对抗</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 27 Jul 2022 11:38:05 &#43;0800</lastBuildDate>
-            <atom:link href="https://liliaow567.github.io/index.xml" rel="self" type="application/rss+xml" />
-        <item>
-    <title>解除UWP应用的网络隔离</title>
-    <link>https://liliaow567.github.io/2022/07/%E8%A7%A3%E9%99%A4uwp%E5%BA%94%E7%94%A8%E7%9A%84%E7%BD%91%E7%BB%9C%E9%9A%94%E7%A6%BB/</link>
-    <pubDate>Wed, 27 Jul 2022 11:38:05 &#43;0800</pubDate>
-    <author>liao</author>
-    <guid>https://liliaow567.github.io/2022/07/%E8%A7%A3%E9%99%A4uwp%E5%BA%94%E7%94%A8%E7%9A%84%E7%BD%91%E7%BB%9C%E9%9A%94%E7%A6%BB/</guid>
-    <description><![CDATA[使用命令行工具解除UWP应用的网络隔离]]></description>
-</item>
-<item>
-    <title>Git命令</title>
-    <link>https://liliaow567.github.io/2022/07/git%E5%91%BD%E4%BB%A4/</link>
-    <pubDate>Wed, 27 Jul 2022 11:03:48 &#43;0800</pubDate>
-    <author>liao</author>
-    <guid>https://liliaow567.github.io/2022/07/git%E5%91%BD%E4%BB%A4/</guid>
-    <description><![CDATA[记录Git命令的常用操作]]></description>
-</item>
-<item>
-    <title>工具收集</title>
-    <link>https://liliaow567.github.io/2022/07/%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/</link>
-    <pubDate>Tue, 26 Jul 2022 23:53:15 &#43;0800</pubDate>
-    <author>liao</author>
-    <guid>https://liliaow567.github.io/2022/07/%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/</guid>
-    <description><![CDATA[一些好用的工具、或项目合集]]></description>
-</item>
-<item>
-    <title>Spaceclaim命令行参数传入</title>
-    <link>https://liliaow567.github.io/2022/07/spaceclaim%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%E4%BC%A0%E5%85%A5/</link>
-    <pubDate>Tue, 26 Jul 2022 23:19:37 &#43;0800</pubDate>
-    <author>liao</author>
-    <guid>https://liliaow567.github.io/2022/07/spaceclaim%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%E4%BC%A0%E5%85%A5/</guid>
-    <description><![CDATA[记录spaceclaim命令行如何传入参数，以及脚本中如何获取参数]]></description>
-</item>
-<item>
+        <title>GSL - 标签 - 备忘录</title>
+        <link>https://liliaow567.github.io/tags/gsl/</link>
+        <description>GSL - 标签 - 备忘录</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 09 May 2020 04:12:52 &#43;0800</lastBuildDate><atom:link href="https://liliaow567.github.io/tags/gsl/" rel="self" type="application/rss+xml" /><item>
     <title>GSL 系列 6 — 线性代数 5 — 完全正交分解</title>
     <link>https://liliaow567.github.io/2020/05/gsl%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B05/</link>
     <pubDate>Sat, 09 May 2020 04:12:52 &#43;0800</pubDate>
@@ -84,6 +50,38 @@
     <author>liao</author>
     <guid>https://liliaow567.github.io/2020/05/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B54/</guid>
     <description><![CDATA[GSL 线性代数基本运算 (BLAS) 模块]]></description>
+</item>
+<item>
+    <title>GSL 系列 5 — 向量和矩阵 3 — 矩阵 (matrix)</title>
+    <link>https://liliaow567.github.io/2020/05/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B53/</link>
+    <pubDate>Sat, 09 May 2020 03:27:53 &#43;0800</pubDate>
+    <author>liao</author>
+    <guid>https://liliaow567.github.io/2020/05/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B53/</guid>
+    <description><![CDATA[GSL 矩阵结构]]></description>
+</item>
+<item>
+    <title>GSL 系列 5 — 向量和矩阵 2 — 向量 (vector)</title>
+    <link>https://liliaow567.github.io/2020/05/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B52/</link>
+    <pubDate>Sat, 09 May 2020 03:27:41 &#43;0800</pubDate>
+    <author>liao</author>
+    <guid>https://liliaow567.github.io/2020/05/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B52/</guid>
+    <description><![CDATA[GSL 向量结构]]></description>
+</item>
+<item>
+    <title>GSL 系列 5 — 向量和矩阵 1 — 块 (block)</title>
+    <link>https://liliaow567.github.io/2020/05/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B51/</link>
+    <pubDate>Sat, 09 May 2020 03:27:30 &#43;0800</pubDate>
+    <author>liao</author>
+    <guid>https://liliaow567.github.io/2020/05/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B51/</guid>
+    <description><![CDATA[GSL 向量和矩阵数据结构的基础 block]]></description>
+</item>
+<item>
+    <title>GSL 系列 4 — 特殊函数 4 — 其他特殊函数</title>
+    <link>https://liliaow567.github.io/2020/05/gsl%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B04/</link>
+    <pubDate>Sat, 09 May 2020 03:06:28 &#43;0800</pubDate>
+    <author>liao</author>
+    <guid>https://liliaow567.github.io/2020/05/gsl%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B04/</guid>
+    <description><![CDATA[GSL 特殊函数 4]]></description>
 </item>
 </channel>
 </rss>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>GSL 系列 1 — 数学函数 - 备忘录</title><meta name="Description" content="GSL 数学函数模块"><meta property="og:title" content="GSL 系列 1 — 数学函数" />
+<meta property="og:description" content="GSL 数学函数模块" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liliaow567.github.io/2020/05/gsl%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0/" /><meta property="og:image" content="https://liliaow567.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-05-09T02:44:23+08:00" />
+<meta property="article:modified_time" content="2020-05-09T02:44:23+08:00" /><meta property="og:site_name" content="备忘录" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://liliaow567.github.io/logo.png"/>
+
+<meta name="twitter:title" content="GSL 系列 1 — 数学函数"/>
+<meta name="twitter:description" content="GSL 数学函数模块"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://liliaow567.github.io/2020/05/gsl%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0/" /><link rel="next" href="https://liliaow567.github.io/2020/05/gsl%E5%A4%8D%E6%95%B0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "GSL 系列 1 — 数学函数",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/liliaow567.github.io\/2020\/05\/gsl%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/liliaow567.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "GSL","wordcount":  932 ,
+        "url": "https:\/\/liliaow567.github.io\/2020\/05\/gsl%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0\/","datePublished": "2020-05-09T02:44:23+08:00","dateModified": "2020-05-09T02:44:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/liliaow567.github.io\/images\/avatar.png",
+                    "width":  350 ,
+                    "height":  350 
+                }},"author": {
+                "@type": "Person",
+                "name": "liao"
+            },"description": "GSL 数学函数模块"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="备忘录"><span class="header-title-pre"><i class='fas fa-feather-alt' aria-hidden='true'></i></span>备忘录</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="备忘录"><span class="header-title-pre"><i class='fas fa-feather-alt' aria-hidden='true'></i></span>备忘录</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">GSL 系列 1 — 数学函数</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>liao</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/gsl/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>GSL</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-05-09">2020-05-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 932 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-头文件">1 头文件</a></li>
+    <li><a href="#2-数学常量">2 数学常量</a></li>
+    <li><a href="#3-无穷和非数">3 无穷和非数</a></li>
+    <li><a href="#4-初等函数">4 初等函数</a></li>
+    <li><a href="#5-小整数幂">5 小整数幂</a></li>
+    <li><a href="#6-正负测试">6 正负测试</a></li>
+    <li><a href="#7-奇偶数测试">7 奇偶数测试</a></li>
+    <li><a href="#8-最大最小函数">8 最大最小函数</a></li>
+    <li><a href="#9-浮点数的近似比较">9 浮点数的近似比较</a></li>
+    <li><a href="#10-参考">10 参考</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="1-头文件">1 头文件</h2>
+<p><code>gsl_math.h</code></p>
+<h2 id="2-数学常量">2 数学常量</h2>
+<a class="lightgallery" href="https://s1.ax1x.com/2020/05/09/YM1we1.png" title="https://s1.ax1x.com/2020/05/09/YM1we1.png" data-thumbnail="https://s1.ax1x.com/2020/05/09/YM1we1.png">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://s1.ax1x.com/2020/05/09/YM1we1.png"
+            data-srcset="https://s1.ax1x.com/2020/05/09/YM1we1.png, https://s1.ax1x.com/2020/05/09/YM1we1.png 1.5x, https://s1.ax1x.com/2020/05/09/YM1we1.png 2x"
+            data-sizes="auto"
+            alt="https://s1.ax1x.com/2020/05/09/YM1we1.png" width="400" />
+    </a>
+<p>宏定义示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#ifndef M_E
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define M_E        2.71828182845904523536028747135      </span><span class="cm">/* e */</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3-无穷和非数">3 无穷和非数</h2>
+<p><code>GSL_POSINF</code>: 正无穷</p>
+<p><code>GSL_NEGINF</code>: 负无穷</p>
+<p><code>GSL_NAN</code>：非数</p>
+<p>宏定义：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// gsl_nan.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#ifdef INFINITY
+</span></span></span><span class="line"><span class="cl"><span class="cp"># define GSL_POSINF INFINITY
+</span></span></span><span class="line"><span class="cl"><span class="cp"># define GSL_NEGINF (-INFINITY)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#elif defined(HUGE_VAL)
+</span></span></span><span class="line"><span class="cl"><span class="cp"># define GSL_POSINF HUGE_VAL
+</span></span></span><span class="line"><span class="cl"><span class="cp"># define GSL_NEGINF (-HUGE_VAL)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#else
+</span></span></span><span class="line"><span class="cl"><span class="cp"># define GSL_POSINF (gsl_posinf())
+</span></span></span><span class="line"><span class="cl"><span class="cp"># define GSL_NEGINF (gsl_neginf())
+</span></span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#ifdef NAN
+</span></span></span><span class="line"><span class="cl"><span class="cp"># define GSL_NAN NAN
+</span></span></span><span class="line"><span class="cl"><span class="cp">#elif defined(INFINITY)
+</span></span></span><span class="line"><span class="cl"><span class="cp"># define GSL_NAN (INFINITY/INFINITY)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#else
+</span></span></span><span class="line"><span class="cl"><span class="cp"># define GSL_NAN (gsl_nan())
+</span></span></span><span class="line"><span class="cl"><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//corecrt_math.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#ifndef _HUGE_ENUF
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>    <span class="cp">#define _HUGE_ENUF  1e+300  </span><span class="c1">// _HUGE_ENUF*_HUGE_ENUF must overflow
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#endif
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define INFINITY   ((float)(_HUGE_ENUF * _HUGE_ENUF))
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define HUGE_VAL   ((double)INFINITY)
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define NAN        ((float)(INFINITY * 0.0F))
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//gsl_sys.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="nf">gsl_nan</span> <span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">gsl_posinf</span> <span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">gsl_neginf</span> <span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>判断函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">//gsl_sys.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_isnan</span> <span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span> <span class="c1">//非数返回 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_isinf</span> <span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span> <span class="c1">//正无穷返回 1，负无穷返回 -1，其他返回 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_finite</span> <span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span> <span class="c1">// 实数返回 1，无穷和非数返回 0
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4-初等函数">4 初等函数</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// gsl_sys.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="nf">gsl_log1p</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span> <span class="c1">// log(1+x); x 小的时候较为精确
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="nf">gsl_expm1</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span> <span class="c1">// exp(x)-1; x 小的时候较为精确
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="nf">gsl_hypot</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">y</span><span class="p">);</span> <span class="c1">// sqrt(x^2 + y^2); 避免溢出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="nf">gsl_hypot3</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">y</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">z</span><span class="p">);</span> <span class="c1">// sqrt(x^2+y^2+z^2); 避免溢出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="nf">gsl_acosh</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span> <span class="c1">// arccosh(x) 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="nf">gsl_asinh</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span> <span class="c1">// arcsinh(x)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="nf">gsl_atanh</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span> <span class="c1">// arctanh(x)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="nf">gsl_ldexp</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">e</span><span class="p">);</span> <span class="c1">// x*2^e;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="nf">gsl_frexp</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">e</span><span class="p">);</span> <span class="c1">// x/2^e; x为0，f,e 都设为 0
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="5-小整数幂">5 小整数幂</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// gsl_pow_int.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">INLINE_DECL</span> <span class="kt">double</span> <span class="nf">gsl_pow_2</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">INLINE_DECL</span> <span class="kt">double</span> <span class="nf">gsl_pow_3</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">INLINE_DECL</span> <span class="kt">double</span> <span class="nf">gsl_pow_4</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">INLINE_DECL</span> <span class="kt">double</span> <span class="nf">gsl_pow_5</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">INLINE_DECL</span> <span class="kt">double</span> <span class="nf">gsl_pow_6</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">INLINE_DECL</span> <span class="kt">double</span> <span class="nf">gsl_pow_7</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">INLINE_DECL</span> <span class="kt">double</span> <span class="nf">gsl_pow_8</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">INLINE_DECL</span> <span class="kt">double</span> <span class="nf">gsl_pow_9</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* HAVE_INLINE被定义时，以上函数使用内联 */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">gsl_pow_int</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">gsl_pow_uint</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 该函数还有另一个版本，会计算数值误差，gsl_sf_pow_int_e()
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="6-正负测试">6 正负测试</h2>
+<p><code>GSL_SIGN(X)</code>: 大于等于 0 为 1，小于 0 为 -1</p>
+<p>宏定义：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// gsl_math.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define GSL_SIGN(x)    ((x) &gt;= 0.0 ? 1 : -1)
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="7-奇偶数测试">7 奇偶数测试</h2>
+<p><code>GSL_IS_ODD(n)</code>: 奇数返回 1，偶数返回 0</p>
+<p><code>GSL_IS_EVEN(n)</code>: 偶数返回 1，奇数返回 0</p>
+<p>宏定义：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// gsl_math.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define GSL_IS_ODD(n)  ((n) &amp; 1)
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define GSL_IS_EVEN(n) (!(GSL_IS_ODD(n)))
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="8-最大最小函数">8 最大最小函数</h2>
+<p><code>GSL_MAX(a,b)</code>: 返回 a, b 的最大值</p>
+<p><code>GSL_MIN(a,b)</code>: 返回 a, b 的最小值</p>
+<p>宏定义：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// gsl_minmax.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define GSL_MAX(a,b) ((a) &gt; (b) ? (a) : (b))
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define GSL_MIN(a,b) ((a) &lt; (b) ? (a) : (b))
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">// 以上两个宏，还有函数版本 gsl_max, gsl_min
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="nf">gsl_max</span> <span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">gsl_min</span> <span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>内联函数版本(<code>HAVE_INLINE</code> 定义的前提下)：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// gsl_minmax.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">INLINE_FUN</span> <span class="kt">int</span> <span class="nf">GSL_MAX_INT</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">INLINE_FUN</span> <span class="kt">int</span> <span class="nf">GSL_MIN_INT</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">INLINE_FUN</span> <span class="kt">double</span> <span class="nf">GSL_MAX_DBL</span> <span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">INLINE_FUN</span> <span class="kt">double</span> <span class="nf">GSL_MIN_DBL</span> <span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">INLINE_FUN</span> <span class="kt">long</span> <span class="kt">double</span> <span class="nf">GSL_MAX_LDBL</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">double</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">INLINE_FUN</span> <span class="kt">long</span> <span class="kt">double</span> <span class="nf">GSL_MIN_LDBL</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">double</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 内联版本实现示例
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">INLINE_FUN</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="cl"><span class="nf">GSL_MAX_INT</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">GSL_MAX</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//无内联版本
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#define GSL_MAX_INT(a,b)   GSL_MAX(a,b)
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="9-浮点数的近似比较">9 浮点数的近似比较</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">gsl_fcmp</span> <span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">x1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">x2</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">epsilon</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 
+</span></span></span><span class="line"><span class="cl"><span class="cm">判断 x, y 是否近似等于一个相对精度 epsilon, 
+</span></span></span><span class="line"><span class="cl"><span class="cm">根据 frexp() 计算出一个间隔, 判断 x, y 是否在间隔之内，
+</span></span></span><span class="line"><span class="cl"><span class="cm">在，即返回0，认为近似相等，否则，x &lt; y 返回 -1，x &gt; y 返回 + 1。
+</span></span></span><span class="line"><span class="cl"><span class="cm">注意，比较的是相对精度，而不是两者间隔接近 0 的程度。
+</span></span></span><span class="line"><span class="cl"><span class="cm">基于 fcmp 实现。
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="10-参考">10 参考</h2>
+<p><a href="https://www.gnu.org/software/gsl/doc/html/math.html#mathematical-constants" target="_blank" rel="noopener noreffer ">https://www.gnu.org/software/gsl/doc/html/math.html</a></p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-05-09</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/gsl/">GSL</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/2020/05/gsl%E5%A4%8D%E6%95%B0/" class="next" rel="next" title="GSL 系列 2 — 复数">GSL 系列 2 — 复数<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">liao</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"search":{"algoliaAppID":"AZHM6I9JAS","algoliaIndex":"index","algoliaSearchKey":"74e84d89837226ea0228b04483f06579","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

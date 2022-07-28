@@ -1,0 +1,39 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>特殊函数 - 标签 - 备忘录</title>
+        <link>https://liliaow567.github.io/tags/%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B0/</link>
+        <description>特殊函数 - 标签 - 备忘录</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 09 May 2020 03:06:28 &#43;0800</lastBuildDate><atom:link href="https://liliaow567.github.io/tags/%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B0/" rel="self" type="application/rss+xml" /><item>
+    <title>GSL 系列 4 — 特殊函数 4 — 其他特殊函数</title>
+    <link>https://liliaow567.github.io/2020/05/gsl%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B04/</link>
+    <pubDate>Sat, 09 May 2020 03:06:28 &#43;0800</pubDate>
+    <author>liao</author>
+    <guid>https://liliaow567.github.io/2020/05/gsl%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B04/</guid>
+    <description><![CDATA[GSL 特殊函数 4]]></description>
+</item>
+<item>
+    <title>GSL 系列 4 — 特殊函数 3 — 贝塞尔 (Bessel) 函数</title>
+    <link>https://liliaow567.github.io/2020/05/gsl%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B03/</link>
+    <pubDate>Sat, 09 May 2020 03:04:01 &#43;0800</pubDate>
+    <author>liao</author>
+    <guid>https://liliaow567.github.io/2020/05/gsl%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B03/</guid>
+    <description><![CDATA[GSL 特殊函数 3]]></description>
+</item>
+<item>
+    <title>GSL 系列 4 — 特殊函数 2 — 艾里 (Airy) 函数</title>
+    <link>https://liliaow567.github.io/2020/05/gsl%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B02/</link>
+    <pubDate>Sat, 09 May 2020 03:01:31 &#43;0800</pubDate>
+    <author>liao</author>
+    <guid>https://liliaow567.github.io/2020/05/gsl%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B02/</guid>
+    <description><![CDATA[GSL 特殊函数 2]]></description>
+</item>
+<item>
+    <title>GSL 系列 4 — 特殊函数 1 — 用法，结果类，模式</title>
+    <link>https://liliaow567.github.io/2020/05/gsl%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B01/</link>
+    <pubDate>Sat, 09 May 2020 02:58:41 &#43;0800</pubDate>
+    <author>liao</author>
+    <guid>https://liliaow567.github.io/2020/05/gsl%E7%89%B9%E6%AE%8A%E5%87%BD%E6%95%B01/</guid>
+    <description><![CDATA[GSL 特殊函数 1]]></description>
+</item>
+</channel>
+</rss>
