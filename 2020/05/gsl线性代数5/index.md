@@ -54,7 +54,7 @@ $Q,Z$ 一部分存在 `A` 中，另一部分存在 `tau_Q`, `tau_Z` 中
 
 $R_{11}$ 存在 `A` 中，
 
-`rank` 计算方式，参考：{% post_link GSL线性代数3 GSL 系列 6 — 线性代数 3 — QR 分解 false %}
+`rank` 计算方式，参考：[QR分解]({{< relref "posts/GSL线性代数3.md" >}})
 
 `work` 为工作空间，长度为 $N$
 
