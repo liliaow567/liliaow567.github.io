@@ -153,7 +153,7 @@ gsl_matrix_view_vector_with_tda(gsl_vector * v,
                                        const size_t n2,
                                        const size_t tda);                           
 ```
-### 7.3 根据矩阵返回向量查看对象
+### 7.3 根据矩阵返回向量查看对象 {#rmv}
 
 ```cpp
 // 第 i 行

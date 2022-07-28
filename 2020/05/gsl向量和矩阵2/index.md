@@ -104,8 +104,7 @@ typedef struct
 typedef const _gsl_vector_const_view gsl_vector_const_view;
 ```
 ### 7.2 返回向量查看对象
-除了根据以下方式返回向量查看对象，还可以根据矩阵返回向量查看对象，具体参见：{% post_link GSL向量和矩阵3 GSL 系列 5 — 向量和矩阵 3 — 矩阵 (matrix) false %}（根据矩阵返回向量查看对象）节
-
+除了根据以下方式返回向量查看对象，还可以根据矩阵返回向量查看对象，具体参见：[根据矩阵返回向量查看对象]({{< relref "posts/GSL向量和矩阵3.md#rmv" >}})
 
 ```cpp
 // 根据数组，返回向量查看对象，长度为 n
