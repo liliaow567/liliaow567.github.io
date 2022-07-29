@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>GSL 系列 5 — 向量和矩阵 2 — 向量 (vector) - 备忘录</title><meta name="Description" content="GSL 向量结构"><meta property="og:title" content="GSL 系列 5 — 向量和矩阵 2 — 向量 (vector)" />
+<meta property="og:description" content="GSL 向量结构" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://liliaow567.github.io/2020/05/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B52/" /><meta property="og:image" content="https://liliaow567.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-05-09T03:27:41+08:00" />
+<meta property="article:modified_time" content="2020-05-09T03:27:41+08:00" /><meta property="og:site_name" content="备忘录" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://liliaow567.github.io/logo.png"/>
+
+<meta name="twitter:title" content="GSL 系列 5 — 向量和矩阵 2 — 向量 (vector)"/>
+<meta name="twitter:description" content="GSL 向量结构"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://liliaow567.github.io/2020/05/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B52/" /><link rel="prev" href="https://liliaow567.github.io/2020/05/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B51/" /><link rel="next" href="https://liliaow567.github.io/2020/05/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B53/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "GSL 系列 5 — 向量和矩阵 2 — 向量 (vector)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/liliaow567.github.io\/2020\/05\/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B52\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/liliaow567.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "GSL","wordcount":  1483 ,
+        "url": "https:\/\/liliaow567.github.io\/2020\/05\/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B52\/","datePublished": "2020-05-09T03:27:41+08:00","dateModified": "2020-05-09T03:27:41+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/liliaow567.github.io\/images\/avatar.png",
+                    "width":  350 ,
+                    "height":  350 
+                }},"author": {
+                "@type": "Person",
+                "name": "liao"
+            },"description": "GSL 向量结构"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="备忘录"><span class="header-title-pre"><i class='fas fa-feather-alt' aria-hidden='true'></i></span>备忘录</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="备忘录"><span class="header-title-pre"><i class='fas fa-feather-alt' aria-hidden='true'></i></span>备忘录</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">GSL 系列 5 — 向量和矩阵 2 — 向量 (vector)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>liao</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/gsl/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>GSL</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2020-05-09">2020-05-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1483 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-写在前面">1 写在前面</a></li>
+    <li><a href="#vec">2 向量 (vector)</a></li>
+    <li><a href="#3-向量内存分配和释放">3 向量内存分配和释放</a></li>
+    <li><a href="#4-获取向量元素">4 获取向量元素</a></li>
+    <li><a href="#5-向量初始化">5 向量初始化</a></li>
+    <li><a href="#rw">6 向量读取和写入</a></li>
+    <li><a href="#7-向量查看-view">7 向量查看 (view)</a>
+      <ul>
+        <li><a href="#71-向量查看对象">7.1 向量查看对象</a></li>
+        <li><a href="#72-返回向量查看对象">7.2 返回向量查看对象</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-向量复制和交换">8 向量复制和交换</a></li>
+    <li><a href="#9-向量运算">9 向量运算</a></li>
+    <li><a href="#10-找寻向量的最大最小元素">10 找寻向量的最大最小元素</a></li>
+    <li><a href="#11-向量判断">11 向量判断</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="1-写在前面">1 写在前面</h2>
+<p>因为向量是构建于块之上，请先理解块，参见：<a href="/2020/05/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B51/#block" rel="">块 (block)</a></p>
+<p>如果没有特殊说明，本篇代码均来自头文件 <code>gsl_vector_double.h</code>，即以下的类型，函数等都是基于<code>double</code> 的。对于其他数据类型的类型、函数等，都是与之类似。</p>
+<h2 id="vec">2 向量 (vector)</h2>
+<p><code>向量</code>建构于<code>块</code>之上，添加了对<code>块</code>的<code>切片</code>描述，向量<code>切片</code>必须是内存空间中一组<code>等间隔</code>的元素，<strong>不同的向量可以创建于一个块之上</strong>，定义如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">size_t</span> <span class="n">size</span><span class="p">;</span> <span class="c1">// 向量元素个数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">size_t</span> <span class="n">stride</span><span class="p">;</span> <span class="c1">// 相邻元素的物理空间步长
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">double</span> <span class="o">*</span><span class="n">data</span><span class="p">;</span> <span class="c1">// 向量的指针，地址为向量的第一个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">gsl_block</span> <span class="o">*</span><span class="n">block</span><span class="p">;</span> <span class="c1">// 向量的数据基础快的指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int</span> <span class="n">owner</span><span class="p">;</span> <span class="c1">// 向量对块的所有权
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span> 
+</span></span><span class="line"><span class="cl"><span class="n">gsl_vector</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上述注释中，向量对块的所有权是指，当向量对块有所有权 (<code>owner=1</code>) 时，向量内存在释放时，块内存也会得到释放</p>
+<h2 id="3-向量内存分配和释放">3 向量内存分配和释放</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">gsl_vector</span> <span class="o">*</span><span class="nf">gsl_vector_alloc</span><span class="p">(</span><span class="k">const</span> <span class="n">size_t</span> <span class="n">n</span><span class="p">);</span> <span class="c1">// 分配一个长度为 n 的向量，无初始化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">gsl_vector</span> <span class="o">*</span><span class="nf">gsl_vector_calloc</span><span class="p">(</span><span class="k">const</span> <span class="n">size_t</span> <span class="n">n</span><span class="p">);</span> <span class="c1">// 分配一个长度为 n 的向量，初始化为 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 根据块分配向量内存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">gsl_vector</span> <span class="o">*</span><span class="nf">gsl_vector_alloc_from_block</span><span class="p">(</span><span class="n">gsl_block</span> <span class="o">*</span> <span class="n">b</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                                     <span class="k">const</span> <span class="n">size_t</span> <span class="n">offset</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                                     <span class="k">const</span> <span class="n">size_t</span> <span class="n">n</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                                     <span class="k">const</span> <span class="n">size_t</span> <span class="n">stride</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 根据向量分配向量内存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">gsl_vector</span> <span class="o">*</span><span class="nf">gsl_vector_alloc_from_vector</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                                      <span class="k">const</span> <span class="n">size_t</span> <span class="n">offset</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                                      <span class="k">const</span> <span class="n">size_t</span> <span class="n">n</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                                      <span class="k">const</span> <span class="n">size_t</span> <span class="n">stride</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">gsl_vector_free</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">);</span> <span class="c1">// 向量内存释放
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4-获取向量元素">4 获取向量元素</h2>
+<p>包含一个向量元素设定函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// HAVE_INLINE 定义时下列函数使用 内联
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 获取向量第 i 个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">INLINE_DECL</span> <span class="kt">double</span> <span class="nf">gsl_vector_get</span><span class="p">(</span><span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="k">const</span> <span class="n">size_t</span> <span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 设定向量第 i 个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">INLINE_DECL</span> <span class="kt">void</span> <span class="nf">gsl_vector_set</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="k">const</span> <span class="n">size_t</span> <span class="n">i</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 返回第 i 个元素的指针
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">INLINE_DECL</span> <span class="kt">double</span> <span class="o">*</span> <span class="nf">gsl_vector_ptr</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="k">const</span> <span class="n">size_t</span> <span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">INLINE_DECL</span> <span class="k">const</span> <span class="kt">double</span> <span class="o">*</span> <span class="nf">gsl_vector_const_ptr</span><span class="p">(</span><span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="k">const</span> <span class="n">size_t</span> <span class="n">i</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="5-向量初始化">5 向量初始化</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 初始化为 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">gsl_vector_set_zero</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 初始化为 x
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">gsl_vector_set_all</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 第 i 个元素设为 1， 其他元素设为 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_set_basis</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">i</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="rw">6 向量读取和写入</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 以下函数，成功返回 0，否则 错误 GSL_EFAILED
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 以二进制 从 流 读到 向量 中，向量需分配好合适的长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_fread</span><span class="p">(</span><span class="n">FILE</span> <span class="o">*</span> <span class="n">stream</span><span class="p">,</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 以二进制 从 向量 写到 流 中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_fwrite</span><span class="p">(</span><span class="n">FILE</span> <span class="o">*</span> <span class="n">stream</span><span class="p">,</span> <span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 以格式化的数据 从 流 读到 向量 中，向量需分配好合适的长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_fscanf</span><span class="p">(</span><span class="n">FILE</span> <span class="o">*</span> <span class="n">stream</span><span class="p">,</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 以格式化的方式 从 向量 写到 流 中
+</span></span></span><span class="line"><span class="cl"><span class="c1">// %g, %e, %f 用于浮点数 %d 用于整数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_fprintf</span><span class="p">(</span><span class="n">FILE</span> <span class="o">*</span> <span class="n">stream</span><span class="p">,</span> <span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                              <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">format</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="7-向量查看-view">7 向量查看 (view)</h2>
+<h3 id="71-向量查看对象">7.1 向量查看对象</h3>
+<p><code>向量查看对象</code>是放在<code>栈区</code>的，有<code>非 const</code> 和 <code>const</code> 两种，定义如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">gsl_vector</span> <span class="n">vector</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">_gsl_vector_view</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="n">_gsl_vector_view</span> <span class="n">gsl_vector_view</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">gsl_vector</span> <span class="n">vector</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">_gsl_vector_const_view</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">const</span> <span class="n">_gsl_vector_const_view</span> <span class="n">gsl_vector_const_view</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="72-返回向量查看对象">7.2 返回向量查看对象</h3>
+<p>除了根据以下方式返回向量查看对象，还可以根据矩阵返回向量查看对象，具体参见：<a href="/2020/05/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B53/#rmv" rel="">根据矩阵返回向量查看对象</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 根据数组，返回向量查看对象，长度为 n
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">_gsl_vector_view</span> 
+</span></span><span class="line"><span class="cl"><span class="nf">gsl_vector_view_array</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">_gsl_vector_view</span> 
+</span></span><span class="line"><span class="cl"><span class="nf">gsl_vector_view_array_with_stride</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span><span class="n">base</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                         <span class="n">size_t</span> <span class="n">stride</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                         <span class="n">size_t</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">_gsl_vector_const_view</span> 
+</span></span><span class="line"><span class="cl"><span class="nf">gsl_vector_const_view_array</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">_gsl_vector_const_view</span> 
+</span></span><span class="line"><span class="cl"><span class="nf">gsl_vector_const_view_array_with_stride</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="o">*</span><span class="n">base</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                               <span class="n">size_t</span> <span class="n">stride</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                               <span class="n">size_t</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 根据 向量 返回一个向量查看对象, i 是原向量的偏置，n 是 新向量查看对象对应的长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">_gsl_vector_view</span> 
+</span></span><span class="line"><span class="cl"><span class="nf">gsl_vector_subvector</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                            <span class="n">size_t</span> <span class="n">i</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                            <span class="n">size_t</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">_gsl_vector_view</span> 
+</span></span><span class="line"><span class="cl"><span class="nf">gsl_vector_subvector_with_stride</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                        <span class="n">size_t</span> <span class="n">i</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="n">size_t</span> <span class="n">stride</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                        <span class="n">size_t</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">_gsl_vector_const_view</span> 
+</span></span><span class="line"><span class="cl"><span class="nf">gsl_vector_const_subvector</span><span class="p">(</span><span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                  <span class="n">size_t</span> <span class="n">i</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                  <span class="n">size_t</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">_gsl_vector_const_view</span> 
+</span></span><span class="line"><span class="cl"><span class="nf">gsl_vector_const_subvector_with_stride</span><span class="p">(</span><span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                              <span class="n">size_t</span> <span class="n">i</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                              <span class="n">size_t</span> <span class="n">stride</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                              <span class="n">size_t</span> <span class="n">n</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="8-向量复制和交换">8 向量复制和交换</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 将向量 src 复制到 向量 dest 中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_memcpy</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">src</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 将向量 v 反序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_reverse</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 交换向量 v 和 w
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_swap</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">w</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 交换向量 v 的第 i 和 j 个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_swap_elements</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="k">const</span> <span class="n">size_t</span> <span class="n">i</span><span class="p">,</span> <span class="k">const</span> <span class="n">size_t</span> <span class="n">j</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="9-向量运算">9 向量运算</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 以下运算结果保存在 a 中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_add</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">b</span><span class="p">);</span> <span class="c1">// a+b
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_sub</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">b</span><span class="p">);</span> <span class="c1">// a-b
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_mul</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">b</span><span class="p">);</span> <span class="c1">// a*b, 元素乘
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_div</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">b</span><span class="p">);</span> <span class="c1">// a/b，元素除
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_scale</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span> <span class="c1">// xa
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_add_constant</span><span class="p">(</span><span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">x</span><span class="p">);</span> <span class="c1">// a+[x,..,x]
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 以下运算将结果保存在 y 中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_axpby</span><span class="p">(</span><span class="k">const</span> <span class="kt">double</span> <span class="n">alpha</span><span class="p">,</span> <span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">beta</span><span class="p">,</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">y</span><span class="p">);</span> <span class="c1">// alpha x + beta y
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="10-找寻向量的最大最小元素">10 找寻向量的最大最小元素</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">double</span> <span class="nf">gsl_vector_max</span> <span class="p">(</span><span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">);</span> <span class="c1">// 返回最大值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="nf">gsl_vector_min</span> <span class="p">(</span><span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">);</span> <span class="c1">// 返回最小值
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 返回最大值，最小值，存在 max_out, min_out 中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">gsl_vector_minmax</span> <span class="p">(</span><span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span> <span class="n">min_out</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span> <span class="n">max_out</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">size_t</span> <span class="nf">gsl_vector_max_index</span> <span class="p">(</span><span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">);</span> <span class="c1">// 返回最大值索引
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">size_t</span> <span class="nf">gsl_vector_min_index</span> <span class="p">(</span><span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">);</span> <span class="c1">// 返回最小值索引
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 返回最大，最小值索引，存放在 imax, imin 中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">gsl_vector_minmax_index</span> <span class="p">(</span><span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">,</span> <span class="n">size_t</span> <span class="o">*</span> <span class="n">imin</span><span class="p">,</span> <span class="n">size_t</span> <span class="o">*</span> <span class="n">imax</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="11-向量判断">11 向量判断</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 满足条件返回 1 ，否则 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_equal</span><span class="p">(</span><span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">u</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                            <span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">);</span> <span class="c1">// 两向量是否相等
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_isnull</span><span class="p">(</span><span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">);</span> <span class="c1">// 向量所有元素为 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_ispos</span><span class="p">(</span><span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">);</span> <span class="c1">// 向量所有元素为 正
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_isneg</span><span class="p">(</span><span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">);</span> <span class="c1">// 向量所有元素为 负
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">gsl_vector_isnonneg</span><span class="p">(</span><span class="k">const</span> <span class="n">gsl_vector</span> <span class="o">*</span> <span class="n">v</span><span class="p">);</span> <span class="c1">// 向量所有元素为 非负
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-05-09</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/gsl/">GSL</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2020/05/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B51/" class="prev" rel="prev" title="GSL 系列 5 — 向量和矩阵 1 — 块 (block)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>GSL 系列 5 — 向量和矩阵 1 — 块 (block)</a>
+            <a href="/2020/05/gsl%E5%90%91%E9%87%8F%E5%92%8C%E7%9F%A9%E9%98%B53/" class="next" rel="next" title="GSL 系列 5 — 向量和矩阵 3 — 矩阵 (matrix)">GSL 系列 5 — 向量和矩阵 3 — 矩阵 (matrix)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">liao</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"search":{"algoliaAppID":"AZHM6I9JAS","algoliaIndex":"index","algoliaSearchKey":"74e84d89837226ea0228b04483f06579","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

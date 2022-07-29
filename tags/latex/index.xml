@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Latex - 标签 - 备忘录</title>
+        <link>https://liliaow567.github.io/tags/latex/</link>
+        <description>Latex - 标签 - 备忘录</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 09 May 2020 02:02:30 &#43;0800</lastBuildDate><atom:link href="https://liliaow567.github.io/tags/latex/" rel="self" type="application/rss+xml" /><item>
+    <title>Latex 插入 svg 图片</title>
+    <link>https://liliaow567.github.io/2020/05/latex%E6%8F%92%E5%85%A5svg%E5%9B%BE%E7%89%87/</link>
+    <pubDate>Sat, 09 May 2020 02:02:30 &#43;0800</pubDate>
+    <author>liao</author>
+    <guid>https://liliaow567.github.io/2020/05/latex%E6%8F%92%E5%85%A5svg%E5%9B%BE%E7%89%87/</guid>
+    <description><![CDATA[利用 inkscape 在 latex 中插入 svg 格式图片]]></description>
+</item>
+</channel>
+</rss>
