@@ -15,7 +15,7 @@
 
 导言区：
 
-```tex
+```code
 \usepackage{svg}
 \svgsetup{
   inkscapepath=i/svg-inkscape/
@@ -25,7 +25,7 @@
 
 正文区：
 
-```tex
+```code
 \includesvg{demo}
 ```
 
@@ -49,7 +49,7 @@ inkscape -D --export-type=pdf --export-latex demo.svg
 ```
 Latex 导言区
 
-```tex
+```code
 \usepackage{color}
 \usepackage{transparent}
 \usepackage{graphicx}
@@ -63,7 +63,7 @@ Latex 导言区
 
 正文区
 
-```tex
+```code
 \begin{figure}
   \centering
   \includesvg{0.8\columnwidth}{demo}
@@ -77,7 +77,7 @@ Latex 导言区
 
 导言区：
 
-```tex
+```code
 \usepackage{color}
 \usepackage{transparent}
 \usepackage{graphicx}
@@ -101,7 +101,7 @@ Latex 导言区
 
 正文区：
 
-```tex
+```code
 \begin{figure}
   \centering
   \includesvg{0.8\columnwidth}{demo}
@@ -117,7 +117,7 @@ Latex 导言区
 
 导言区：
 
-```tex
+```code
 \usepackage{graphicx}
 \graphicspath{{i/}}
 
@@ -136,7 +136,7 @@ Latex 导言区
 
 正文区：
 
-```tex
+```code
 \begin{figure}
   \centering
   \includesvg{0.8\columnwidth}{demo}

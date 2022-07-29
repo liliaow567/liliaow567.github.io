@@ -145,11 +145,11 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>svg<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\svgsetup</span><span class="nb">{</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">\usepackage{svg}
+</span></span><span class="line"><span class="cl">\svgsetup{
 </span></span><span class="line"><span class="cl">  inkscapepath=i/svg-inkscape/
-</span></span><span class="line"><span class="cl"><span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\svgpath</span><span class="nb">{{</span>svg/<span class="nb">}}</span>
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">\svgpath{{svg/}}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>正文区：</p>
@@ -158,7 +158,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\includesvg</span><span class="nb">{</span>demo<span class="nb">}</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">\includesvg{demo}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>注意</strong>：</p>
@@ -191,14 +191,14 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>color<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>transparent<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>import<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\includesvg</span><span class="nb">}</span>[2]<span class="nb">{</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\def\svgwidth</span><span class="nb">{</span>#1<span class="nb">}</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\import</span><span class="nb">{</span>i<span class="nb">}{</span>#2.pdf<span class="nb">_</span>tex<span class="nb">}</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">}</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">\usepackage{color}
+</span></span><span class="line"><span class="cl">\usepackage{transparent}
+</span></span><span class="line"><span class="cl">\usepackage{graphicx}
+</span></span><span class="line"><span class="cl">\usepackage{import}
+</span></span><span class="line"><span class="cl">\newcommand{\includesvg}[2]{%
+</span></span><span class="line"><span class="cl">\def\svgwidth{#1}%
+</span></span><span class="line"><span class="cl">\import{i}{#2.pdf_tex}%
+</span></span><span class="line"><span class="cl">}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>正文区</p>
@@ -211,11 +211,11 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>
-</span></span><span class="line"><span class="cl">  <span class="k">\centering</span>
-</span></span><span class="line"><span class="cl">  <span class="k">\includesvg</span><span class="nb">{</span>0.8<span class="k">\columnwidth</span><span class="nb">}{</span>demo<span class="nb">}</span>
-</span></span><span class="line"><span class="cl">  <span class="k">\caption</span><span class="nb">{</span>Figure<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">\begin{figure}
+</span></span><span class="line"><span class="cl">  \centering
+</span></span><span class="line"><span class="cl">  \includesvg{0.8\columnwidth}{demo}
+</span></span><span class="line"><span class="cl">  \caption{Figure}
+</span></span><span class="line"><span class="cl">\end{figure}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="4-方法三">4 方法三</h2>
@@ -244,25 +244,25 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>color<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>transparent<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>import<span class="nb">}</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">\usepackage{color}
+</span></span><span class="line"><span class="cl">\usepackage{transparent}
+</span></span><span class="line"><span class="cl">\usepackage{graphicx}
+</span></span><span class="line"><span class="cl">\usepackage{import}
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c">%% 注意图片途径为子目录 i
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\executeiffilenewer</span><span class="nb">}</span>[3]<span class="nb">{</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\ifnum\pdfstrcmp</span><span class="nb">{</span><span class="k">\pdffilemoddate</span><span class="nb">{</span>#1<span class="nb">}}</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">{</span><span class="k">\pdffilemoddate</span><span class="nb">{</span>#2<span class="nb">}}</span>&gt;0<span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">{</span><span class="k">\immediate\write</span>18<span class="nb">{</span>#3<span class="nb">}}</span><span class="k">\fi</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl">%% 注意图片途径为子目录 i
+</span></span><span class="line"><span class="cl">\newcommand{\executeiffilenewer}[3]{%
+</span></span><span class="line"><span class="cl">\ifnum\pdfstrcmp{\pdffilemoddate{#1}}%
+</span></span><span class="line"><span class="cl">{\pdffilemoddate{#2}}&gt;0%
+</span></span><span class="line"><span class="cl">{\immediate\write18{#3}}\fi%
+</span></span><span class="line"><span class="cl">}
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\includesvg</span><span class="nb">}</span>[2]<span class="nb">{</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\executeiffilenewer</span><span class="nb">{</span>i/#2.svg<span class="nb">}{</span>i/#2.pdf<span class="nb">}</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">{</span>inkscape -D --export-filename=i/#2.pdf <span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span>--export-latex i/#2.svg<span class="nb">}</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\def\svgwidth</span><span class="nb">{</span>#1<span class="nb">}</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\import</span><span class="nb">{</span>i<span class="nb">}{</span>#2.pdf<span class="nb">_</span>tex<span class="nb">}</span><span class="c">%i
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl">\newcommand{\includesvg}[2]{%
+</span></span><span class="line"><span class="cl">\executeiffilenewer{i/#2.svg}{i/#2.pdf}%
+</span></span><span class="line"><span class="cl">{inkscape -D --export-filename=i/#2.pdf %
+</span></span><span class="line"><span class="cl">--export-latex i/#2.svg}%
+</span></span><span class="line"><span class="cl">\def\svgwidth{#1}%
+</span></span><span class="line"><span class="cl">\import{i}{#2.pdf_tex}%i
+</span></span><span class="line"><span class="cl">}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>正文区：</p>
@@ -275,11 +275,11 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>
-</span></span><span class="line"><span class="cl">  <span class="k">\centering</span>
-</span></span><span class="line"><span class="cl">  <span class="k">\includesvg</span><span class="nb">{</span>0.8<span class="k">\columnwidth</span><span class="nb">}{</span>demo<span class="nb">}</span>
-</span></span><span class="line"><span class="cl">  <span class="k">\caption</span><span class="nb">{</span>Figure<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">\begin{figure}
+</span></span><span class="line"><span class="cl">  \centering
+</span></span><span class="line"><span class="cl">  \includesvg{0.8\columnwidth}{demo}
+</span></span><span class="line"><span class="cl">  \caption{Figure}
+</span></span><span class="line"><span class="cl">\end{figure}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>注意</strong>：需开启 <code>\write18</code>, 即编译时需要加上 <code>-shell-escape</code> 参数</p>
@@ -304,20 +304,20 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\graphicspath</span><span class="nb">{{</span>i/<span class="nb">}}</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">\usepackage{graphicx}
+</span></span><span class="line"><span class="cl">\graphicspath{{i/}}
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\executeiffilenewer</span><span class="nb">}</span>[3]<span class="nb">{</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\ifnum\pdfstrcmp</span><span class="nb">{</span><span class="k">\pdffilemoddate</span><span class="nb">{</span>#1<span class="nb">}}</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">{</span><span class="k">\pdffilemoddate</span><span class="nb">{</span>#2<span class="nb">}}</span>&gt;0<span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">{</span><span class="k">\immediate\write</span>18<span class="nb">{</span>#3<span class="nb">}}</span><span class="k">\fi</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl">\newcommand{\executeiffilenewer}[3]{%
+</span></span><span class="line"><span class="cl">\ifnum\pdfstrcmp{\pdffilemoddate{#1}}%
+</span></span><span class="line"><span class="cl">{\pdffilemoddate{#2}}&gt;0%
+</span></span><span class="line"><span class="cl">{\immediate\write18{#3}}\fi%
+</span></span><span class="line"><span class="cl">}
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\includesvg</span><span class="nb">}</span>[2]<span class="nb">{</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\executeiffilenewer</span><span class="nb">{</span>i/#2.svg<span class="nb">}{</span>i/#2.pdf<span class="nb">}</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">{</span>inkscape -D --export-filename=i/#2.pdf i/#2.svg<span class="nb">}</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">\includegraphics</span><span class="na">[width=#1]</span><span class="nb">{</span>#2.pdf<span class="nb">}</span><span class="c">%
-</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="nb">}</span>
+</span></span><span class="line"><span class="cl">\newcommand{\includesvg}[2]{%
+</span></span><span class="line"><span class="cl">\executeiffilenewer{i/#2.svg}{i/#2.pdf}%
+</span></span><span class="line"><span class="cl">{inkscape -D --export-filename=i/#2.pdf i/#2.svg}%
+</span></span><span class="line"><span class="cl">\includegraphics[width=#1]{#2.pdf}%
+</span></span><span class="line"><span class="cl">}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>正文区：</p>
@@ -330,11 +330,11 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-tex" data-lang="tex"><span class="line"><span class="cl"><span class="k">\begin</span><span class="nb">{</span>figure<span class="nb">}</span>
-</span></span><span class="line"><span class="cl">  <span class="k">\centering</span>
-</span></span><span class="line"><span class="cl">  <span class="k">\includesvg</span><span class="nb">{</span>0.8<span class="k">\columnwidth</span><span class="nb">}{</span>demo<span class="nb">}</span>
-</span></span><span class="line"><span class="cl">  <span class="k">\caption</span><span class="nb">{</span>Figure<span class="nb">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">\end</span><span class="nb">{</span>figure<span class="nb">}</span>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">\begin{figure}
+</span></span><span class="line"><span class="cl">  \centering
+</span></span><span class="line"><span class="cl">  \includesvg{0.8\columnwidth}{demo}
+</span></span><span class="line"><span class="cl">  \caption{Figure}
+</span></span><span class="line"><span class="cl">\end{figure}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>注意</strong>：需开启 <code>\write18</code>, 即编译时需要加上 <code>-shell-escape</code> 参数</p></div><div class="post-footer" id="post-footer">
